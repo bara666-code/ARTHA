@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Basecamp Mountrix | The Gateway to Gede</title>
+    <title>ARTHA | The Gateway to Gede via Putri</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;700&display=swap" rel="stylesheet">
     <style>
@@ -19,80 +19,113 @@
         <div class="hidden md:flex space-x-8 text-xs uppercase tracking-widest font-bold text-zinc-500">
             <a href="#tentang" class="hover:text-emerald-600 transition">Tentang</a>
             <a href="#harga" class="hover:text-emerald-600 transition">Pricelist</a>
-            <a href="#booking" class="hover:text-emerald-600 transition">Booking</a>
             <a href="#galeri" class="hover:text-emerald-600 transition">Galeri</a>
+            <a href="#booking" class="hover:text-emerald-600 transition">Booking</a>
         </div>
         <a href="#booking" class="px-6 py-2 border border-zinc-200 hover:border-emerald-600 hover:bg-emerald-600 hover:text-white transition text-xs font-bold uppercase rounded-full">Booking</a>
     </nav>
 
     <!-- Hero Section -->
-    <header id="tentang" class="relative h-screen flex flex-col justify-end p-12">
+    <header id="tentang" class="relative h-screen flex flex-col justify-end p-8 md:p-12">
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070')] bg-cover bg-center"></div>
         <div class="absolute inset-0 bg-black/40"></div>
+        
         <div class="relative z-10 max-w-2xl text-white">
+            <!-- Widget Status (Manual) & Cuaca Realtime -->
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+                <!-- Status Buka/Tutup Basecamp (Dikontrol Manual) -->
+                <div id="statusBadge" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md text-xs font-bold uppercase tracking-wider cursor-pointer select-none" onclick="toggleStatusManual()" title="Klik untuk mengubah status secara manual">
+                    <span id="statusDot" class="w-2 h-2 rounded-full"></span>
+                    <span id="statusText">Memuat Status...</span>
+                </div>
+
+                <!-- Suhu & Kondisi Realtime -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-black/50 border border-white/20 text-xs font-medium text-zinc-200 shadow-lg">
+                    <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                    </svg>
+                    <span>Basecamp Artha: <strong id="tempDisplay" class="text-white">--°C</strong> • <span id="weatherCondition" class="text-emerald-300 font-semibold">Memuat cuaca...</span></span>
+                </div>
+            </div>
+
             <h1 class="text-5xl md:text-8xl font-bold leading-none mb-6">Gede<br>via Putri</h1>
-            <p class="text-zinc-200 text-lg mb-8 max-w-md">Gerbang pendakian paling efisien menuju Alun-Alun Suryakencana. Siapkan dirimu bersama Artha.</p>
+            <p class="text-zinc-200 text-lg mb-4 max-w-md">Gerbang pendakian paling efisien menuju Alun-Alun Suryakencana. Siapkan dirimu bersama Artha.</p>
+            
+            <!-- Jam Operasional & Update Cuaca -->
+            <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-xs text-zinc-400 font-mono">
+                <span id="jamOperasionalText"></span>
+                <span class="hidden sm:inline">•</span>
+                <span>Diperbarui: <span id="lastUpdated" class="text-zinc-300">--:--</span></span>
+            </div>
         </div>
     </header>
 
     <!-- Pricing Section -->
-    <section id="harga" class="py-20 px-12 bg-white">
+    <section id="harga" class="py-20 px-8 md:px-12 bg-white">
         <h2 class="text-4xl font-bold mb-12">Pricelist</h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="grid md:grid-cols-3 gap-6">
             <div class="p-8 border border-zinc-200 hover:bg-emerald-50 transition hover:border-emerald-200 rounded-sm">
-                <span class="text-xs text-emerald-600 uppercase font-bold">CAMP WEEKDAAY 2D1N</span>
-                <h4 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h4>
+                <span class="text-xs text-emerald-600 uppercase font-bold">CAMP WEEKDAY 2D1N</span>
+                <h3 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h3>
                 <p class="text-3xl font-bold mt-4">Rp 95k</p>
             </div>
             <div class="p-8 border border-zinc-200 hover:bg-emerald-50 transition hover:border-emerald-200 rounded-sm">
                 <span class="text-xs text-emerald-600 uppercase font-bold">CAMP WEEKEND 2D1N</span>
-                <h4 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h4>
+                <h3 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h3>
                 <p class="text-3xl font-bold mt-4">Rp 100k</p>
             </div>
             <div class="p-8 border border-zinc-200 hover:bg-emerald-50 transition hover:border-emerald-200 rounded-sm">
-                <span class="text-xs text-emerald-600 uppercase font-bold">TEKTOK 2DIN</span>
-                <h4 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h4>
+                <span class="text-xs text-emerald-600 uppercase font-bold">TEKTOK 2D1N</span>
+                <h3 class="text-xl mt-2 font-bold text-zinc-900">SIMAKSI</h3>
                 <p class="text-3xl font-bold mt-4">Rp 90k</p>
             </div>
         </div>
     </section>
 
-    <!-- Galeri (1:1) -->
-    <section id="galeri" class="py-20 px-12 bg-zinc-50">
+    <!-- Galeri -->
+    <section id="galeri" class="py-20 px-8 md:px-12 bg-zinc-50">
         <h2 class="text-3xl font-bold mb-12">Dokumentasi</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div class="aspect-square overflow-hidden bg-zinc-200"><img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.55.jpeg?raw=true" class="w-full h-full object-cover hover:scale-105 transition duration-500"></div>
-            <div class="aspect-square overflow-hidden bg-zinc-200"><img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.55%20(1).jpeg?raw=true" class="w-full h-full object-cover hover:scale-105 transition duration-500"></div>
-            <div class="aspect-square overflow-hidden bg-zinc-200"><img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.54%20(2).jpeg?raw=true" class="w-full h-full object-cover hover:scale-105 transition duration-500"></div>
-            <div class="aspect-square overflow-hidden bg-zinc-200"><img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.54%20(1).jpeg?raw=true" class="w-full h-full object-cover hover:scale-105 transition duration-500"></div>
+            <div class="aspect-square overflow-hidden bg-zinc-200">
+                <img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.55.jpeg?raw=true" alt="Dokumentasi ARTHA 1" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="aspect-square overflow-hidden bg-zinc-200">
+                <img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.55%20(1).jpeg?raw=true" alt="Dokumentasi ARTHA 2" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="aspect-square overflow-hidden bg-zinc-200">
+                <img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.54%20(2).jpeg?raw=true" alt="Dokumentasi ARTHA 3" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
+            <div class="aspect-square overflow-hidden bg-zinc-200">
+                <img src="https://github.com/bara666-code/ARTHA/blob/main/WhatsApp%20Image%202026-07-17%20at%2002.11.54%20(1).jpeg?raw=true" alt="Dokumentasi ARTHA 4" class="w-full h-full object-cover hover:scale-105 transition duration-500">
+            </div>
         </div>
     </section>
 
     <!-- Booking Section -->
-    <section id="booking" class="py-20 px-12 bg-white">
+    <section id="booking" class="py-20 px-8 md:px-12 bg-white">
         <div class="max-w-xl mx-auto">
             <h2 class="text-3xl font-bold mb-8">Pesan Booking Sekarang</h2>
             <form id="bookingForm" class="space-y-4">
                 <div>
-                    <label class="block text-xs uppercase text-zinc-500 mb-1">Nama Lengkap</label>
+                    <label for="name" class="block text-xs uppercase text-zinc-500 mb-1">Nama Lengkap</label>
                     <input type="text" id="name" required class="w-full bg-zinc-50 border border-zinc-200 p-3 rounded focus:border-emerald-600 outline-none text-zinc-900">
                 </div>
                 <div>
-                    <label class="block text-xs uppercase text-zinc-500 mb-1">Pilih Paket</label>
+                    <label for="package" class="block text-xs uppercase text-zinc-500 mb-1">Pilih Paket</label>
                     <select id="package" required class="w-full bg-zinc-50 border border-zinc-200 p-3 rounded focus:border-emerald-600 outline-none text-zinc-900">
-                        <option value="SIMAKSI WNI">CAMP WEEKDAY 2D1N (Rp 95k)</option>
-                        <option value="Basecamp Stay">CAMP WEEKEND (Rp 100k)</option>
-                        <option value="Full Logistik">2DIN (Rp 90k)</option>
+                        <option value="CAMP WEEKDAY 2D1N (Rp 95k)">CAMP WEEKDAY 2D1N (Rp 95k)</option>
+                        <option value="CAMP WEEKEND 2D1N (Rp 100k)">CAMP WEEKEND 2D1N (Rp 100k)</option>
+                        <option value="TEKTOK 2D1N (Rp 90k)">TEKTOK 2D1N (Rp 90k)</option>
                     </select>
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs uppercase text-zinc-500 mb-1">Tanggal</label>
+                        <label for="date" class="block text-xs uppercase text-zinc-500 mb-1">Tanggal</label>
                         <input type="date" id="date" required class="w-full bg-zinc-50 border border-zinc-200 p-3 rounded focus:border-emerald-600 outline-none text-zinc-900">
                     </div>
                     <div>
-                        <label class="block text-xs uppercase text-zinc-500 mb-1">Jumlah Orang</label>
-                        <input type="number" id="pax" required class="w-full bg-zinc-50 border border-zinc-200 p-3 rounded focus:border-emerald-600 outline-none text-zinc-900">
+                        <label for="pax" class="block text-xs uppercase text-zinc-500 mb-1">Jumlah Orang</label>
+                        <input type="number" id="pax" min="1" required class="w-full bg-zinc-50 border border-zinc-200 p-3 rounded focus:border-emerald-600 outline-none text-zinc-900">
                     </div>
                 </div>
                 <button type="submit" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white p-4 font-bold uppercase tracking-widest text-sm transition">
@@ -102,25 +135,129 @@
         </div>
     </section>
 
+    <!-- Footer -->
+    <footer class="px-12 py-10 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 gap-4">
+        <a href="https://wa.me/6283161388557" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition">WHATSAPP</a>
+        <p>© 2026 ARTHA. All rights reserved.</p>
+    </footer>
+
+    <!-- Script Kontrol Status Manual & Integrasi Cuaca -->
     <script>
+        // ==========================================
+        // 1. KONTROL MANUAL STATUS BASECAMP
+        // ==========================================
+        // Ubah 'isOpen' menjadi:
+        // true  -> BASECAMP BUKA
+        // false -> BASECAMP TUTUP
+        const CONFIG_BASECAMP = {
+            isOpen: false, // <-- Ubah manual di sini (true/false)
+            jamOperasional: "07.00 - 22.00 WIB",
+            pesanBuka: "BASECAMP BUKA",
+            pesanTutup: "BASECAMP TUTUP"
+        };
+
+        // Fungsi memperbarui tampilan status secara manual
+        function applyBasecampStatus() {
+            const badge = document.getElementById('statusBadge');
+            const dot = document.getElementById('statusDot');
+            const text = document.getElementById('statusText');
+            const jamText = document.getElementById('jamOperasionalText');
+
+            if (CONFIG_BASECAMP.isOpen) {
+                badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-emerald-500/20 border border-emerald-400/30 text-xs font-bold uppercase tracking-wider text-emerald-300 cursor-pointer select-none";
+                dot.className = "w-2 h-2 rounded-full bg-emerald-400 animate-pulse";
+                text.innerText = CONFIG_BASECAMP.pesanBuka;
+            } else {
+                badge.className = "inline-flex items-center gap-2 px-3 py-1.5 rounded-full backdrop-blur-md bg-rose-500/20 border border-rose-400/30 text-xs font-bold uppercase tracking-wider text-rose-300 cursor-pointer select-none";
+                dot.className = "w-2 h-2 rounded-full bg-rose-400";
+                text.innerText = CONFIG_BASECAMP.pesanTutup;
+            }
+
+            jamText.innerText = `Jam Operasional: ${CONFIG_BASECAMP.jamOperasional}`;
+        }
+
+        // Fungsi opsional untuk klik langsung badge di layar
+        function toggleStatusManual() {
+            CONFIG_BASECAMP.isOpen = !CONFIG_BASECAMP.isOpen;
+            applyBasecampStatus();
+        }
+
+        // ==========================================
+        // 2. KONFIGURASI CUACA REALTIME (1.450 mdpl)
+        // ==========================================
+        const WEATHER_CONFIG = {
+            lat: -6.747,
+            lon: 106.991,
+            elevation: 1450
+        };
+
+        function translateWMOCode(code) {
+            const wmoMap = {
+                0: "Cerah",
+                1: "Cerah Berawan",
+                2: "Berawan Sebagian",
+                3: "Mendung",
+                45: "Berkabut",
+                48: "Kabut tebal",
+                51: "Gerimis Ringan",
+                53: "Gerimis",
+                55: "Gerimis Lebat",
+                61: "Hujan Ringan",
+                63: "Hujan Sedang",
+                65: "Hujan Lebat",
+                80: "Hujan Lokal",
+                81: "Hujan Deras",
+                95: "Hujan Badai"
+            };
+            return wmoMap[code] || "Cuaca Berawan";
+        }
+
+        async function fetchUltraAccurateWeather() {
+            const tempDisplay = document.getElementById('tempDisplay');
+            const conditionDisplay = document.getElementById('weatherCondition');
+            const lastUpdatedDisplay = document.getElementById('lastUpdated');
+
+            const endpoint = `https://api.open-meteo.com/v1/forecast?latitude=${WEATHER_CONFIG.lat}&longitude=${WEATHER_CONFIG.lon}&elevation=${WEATHER_CONFIG.elevation}&current_weather=true`;
+
+            try {
+                const response = await fetch(endpoint);
+                if (!response.ok) throw new Error('Gagal mengambil data cuaca');
+
+                const data = await response.json();
+                const currentWeather = data.current_weather;
+
+                tempDisplay.innerText = `${Math.round(currentWeather.temperature)}°C`;
+                conditionDisplay.innerText = translateWMOCode(currentWeather.weathercode);
+
+                const now = new Date();
+                lastUpdatedDisplay.innerText = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' }) + " WIB";
+
+            } catch (error) {
+                console.error("Gagal memperbarui cuaca:", error);
+                tempDisplay.innerText = "16°C";
+                conditionDisplay.innerText = "Sejuk";
+            }
+        }
+
+        // Form Handler
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
+            
             const name = document.getElementById('name').value;
             const pkg = document.getElementById('package').value;
             const date = document.getElementById('date').value;
             const pax = document.getElementById('pax').value;
             
-            const message = `Halo Admin ARTHA, saya ingin booking slot pendakian:%0A%0A*Nama:* ${name}%0A*Paket:* ${pkg}%0A*Tanggal:* ${date}%0A*Jumlah Pendaki:* ${pax} orang%0A%0AMohon informasinya, terima kasih.`;
+            const rawMessage = `Halo Admin ARTHA, saya ingin booking slot pendakian:\n\n*Nama:* ${name}\n*Paket:* ${pkg}\n*Tanggal:* ${date}\n*Jumlah Pendaki:* ${pax} orang\n\nMohon informasinya, terima kasih.`;
             
-            window.open(`https://wa.me/6283161388557?text=${message}`, '_blank');
+            window.open(`https://wa.me/6283161388557?text=${encodeURIComponent(rawMessage)}`, '_blank');
         });
-    </script>
 
-    <!-- Footer -->
-    <footer class="px-12 py-10 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center text-xs text-zinc-500 gap-4">
-        <a href="https://wa.me/6283161388557" target="_blank" class="hover:text-emerald-600 transition">WHATSAPP</a>
-        <p>© 2026 ARTHA</p>
-    </footer>
+        // Inisialisasi
+        applyBasecampStatus();
+        fetchUltraAccurateWeather();
+        setInterval(fetchUltraAccurateWeather, 600000);
+    </script>
 
 </body>
 </html>
